@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "django_project.urls"
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://djangopersonalblogsite-production.up.railway.app/",
+    "https://djangopersonalblogsite-production.up.railway.app",
     "localhost",
     "127.0.0.1",
 ]
