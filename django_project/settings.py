@@ -62,6 +62,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "django_project.urls"
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://djangopersonalblogsite-production.up.railway.app/",
+    "localhost",
+    "127.0.0.1",
+]
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
