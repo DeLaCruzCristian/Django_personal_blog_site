@@ -1,6 +1,6 @@
 # Django_personal_blog_site
 My personal blog site.
-Check out the live website https://djangopersonalblogsite-production.up.railway.app/
+Check out the live website [here](https://djangopersonalblogsite-production.up.railway.app/).
 ## Installation
 First clone the repository and change into the directory
 ```bash
@@ -38,3 +38,30 @@ To exit the environment
 ```bash
 $ deactivate
 ```
+
+## How to Use
+**Before getting started, make sure you have configured the email configurations, the Database, the DEBUG, and the SECRET_KEY which are all located in the settings file under django_project folder.**
+
+### Adding posts
+To add posts, go to the admin page
+> http://127.0.0.1:8000/admin/
+
+Then click on `+ add` next to Posts. This will prompt you to fill out a form to create a new post.
+
+After you have created a new post, you are able to go back to the home page
+> http://127.0.0.1:8000/
+
+Where you will see your new post. Click on the post title, and it will take you to the detailed view of your post.
+
+## Features
+The notable features of my blog project are:
+-  SEO-friendly URLs formated as `year/month/day/slug`
+-  Canonical URLs for blog posts
+-  Pagination that displays three posts per page
+-  Post recommendations by email
+-  Comment system (which the admin is able to moderate)
+-  Tagging system to categorize posts by tags
+-  Post recommendations based on similar tags
+-  Sitemap for search engines
+-  RSS feed that users can subscribe to
+-  Full-text search engine.
