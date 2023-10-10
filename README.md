@@ -1,5 +1,6 @@
 # Django_personal_blog_site
-My personal blog site
+My personal blog site.
+Check out the live website https://djangopersonalblogsite-production.up.railway.app/
 ## Installation
 First clone the repository and change into the directory
 ```bash
