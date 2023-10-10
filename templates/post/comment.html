@@ -4,8 +4,8 @@
 
 {% block content %}
     {% if comment %}
-        <h2>Your comment has been added.</h2>
-        <p>
+        <h2 class="uppercase fs-600 ff-sans-cond letter-spacing-2">Your comment has been added.</h2>
+        <p class="go-back-button">
             <a href="{{ post.get_absolute_url }}">Back to the post</a>
         </p>
     {% else %}

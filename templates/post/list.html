@@ -4,29 +4,36 @@
 {% block title %}My Blog{% endblock title %}
 
 {% block content %}
-    <h1>My Blog</h1>
+    <h1 class="text-accent fs-700 ff-sans-cond uppercase letter-spacing-1">My Posts</h1>
     {% if tag %}
-        <h2>Posts tagged with "{{ tag.name }}"</h2>
+        <h2 class="uppercase fs-400 ff-sans-cond letter-spacing-2">Posts tagged with <span class="text-accent">"{{ tag.name }}"</span></h2>
     {% endif %}
-    {% for post in posts %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}">
-                {{ post.title }}
-            </a>
-        </h2>
-        <p class="tags">
-            Tags:
-            {% for tag in post.tags.all %}
-                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-                    {{ tag.name }}
-                </a>
-                {% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|markdown|truncatewords_html:30 }}
-    {% endfor %}
+    <div class="post-list-container flow">
+        {% for post in posts %}
+            <div>
+                <h2 class="uppercase fs-600 ff-sans-cond letter-spacing-2">
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p class="tags">
+                    Tags:
+                    {% for tag in post.tags.all %}
+                        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                            {{ tag.name }}
+                        </a>
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p class="date">
+                    Published {{ post.publish }} by {{ post.author }}
+                </p>
+                {{ post.body|markdown|truncatewords_html:30 }}
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+    
+
     {% include "_pagination.html" with page=posts %}
 {% endblock content %}

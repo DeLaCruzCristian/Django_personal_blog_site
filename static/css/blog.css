@@ -1,93 +1,606 @@
-body {
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
+
+:root {
+    /* colors */
+    --clr-dark: 230 35% 7%;
+    --clr-light: 231 77% 90%;
+    --clr-white: 0 0% 100%;
+
+    /* font-sizes */
+    --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+    --fs-300: 1rem;
+    --fs-200: 0.875rem;
+
+    /* font-families */
+    --ff-serif: "Bellefair", serif;
+    --ff-sans-cond: "Barlow Condensed", sans-serif;
+    --ff-sans-normal: "Barlow", sans-serif;
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
     margin: 0;
-    padding: 0;
-    font-family: helvetica, sans-serif;
 }
 
-a {
-    color: #00abff;
-    text-decoration: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
 }
 
-h1 {
-    font-weight: normal;
-    border-bottom: 1px solid #bbb;
-    padding: 0 0 10px 0;
+/* set up the body */
+body {
+    font-family: var(--ff-sans-normal);
+    font-size: var(--fs-400);
+    color: hsl(var(--clr-white));
+    background-color: hsl(var(--clr-dark));
+    line-height: 1.5;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: min-content 1fr;
 }
 
-h2 {
-    font-weight: normal;
-    margin: 30px 0 0;
+/* make images easier to work with */
+img,
+picutre {
+    max-width: 100%;
+    display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.d-block {
+    display: block;
+}
+
+.flow > *:where(:not(:first-child)) {
+    margin-top: var(--flow-space, 1rem);
+}
+
+.container {
+    padding-inline: 0.5em;
+    margin-inline: auto;
+    max-width: 80rem;
+}
+
+.grid-container {
+    display: grid;
+    padding-inline: 1rem;
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(0, 25rem) minmax(0, 80rem);
+}
+
+.grid-container * {
+    max-width: 100ch;
 }
 
 #content {
-    float: left;
-    width: 60%;
-    padding: 0 0 0 30px;
+    grid-column: 2;
+    max-width: none;
+    margin-inline: 2em;
 }
 
-#sidebar {
-    float: right;
-    width: 30%;
-    padding: 10px;
-    background: #efefef;
-    height: 100%;
+.grid-container--home {
+    padding-bottom: max(6rem, 20vh);
+    align-items: start;
 }
 
-p.date {
-    color: #ccc;
-    font-family: georgia, serif;
-    font-size: 12px;
-    font-style: italic;
-}
-
-/* pagination */
-.pagination {
-    margin: 40px 0;
-    font-weight: bold;
-}
-
-/* forms */
-label {
-    float: left;
-    clear: both;
-    color: #333;
-    margin-bottom: 4px;
-}
-input,
-textarea {
-    clear: both;
-    float: left;
-    margin: 0 0 10px;
-    background: #ededed;
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; /* added line */
     border: 0;
-    padding: 6px 10px;
-    font-size: 12px;
 }
-input[type="submit"] {
-    font-weight: bold;
-    background: #00abff;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 14px;
+
+.skip-to-content {
+    position: absolute;
+    z-index: 9999;
+    background-color: hsl(var(--clr-white));
+    color: hsl(var(--clr-dark));
+    padding: 0.5em 1em;
+    margin-inline: auto;
+    transform: translateY(-100%);
+    transition: transform 250ms ease-in-out;
+}
+
+.skip-to-content:focus {
+    transform: translateY(0);
+}
+
+/* colors */
+
+.bg-dark {
+    background-color: hsl(var(--clr-dark));
+}
+.bg-accent {
+    background-color: hsl(var(--clr-light));
+}
+.bg-white {
+    background-color: hsl(var(--clr-white));
+}
+
+.text-dark {
+    color: hsl(var(--clr-dark));
+}
+.text-accent {
+    color: hsl(var(--clr-light));
+}
+.text-white {
+    color: hsl(var(--clr-white));
+}
+
+/* typography */
+
+.ff-serif {
+    font-family: var(--ff-serif);
+}
+.ff-sans-cond {
+    font-family: var(--ff-sans-cond);
+}
+.ff-sans-normal {
+    font-family: var(--ff-sans-normal);
+}
+
+.letter-spacing-1 {
+    letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+    letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+    letter-spacing: 2.35px;
+}
+
+.uppercase {
     text-transform: uppercase;
 }
-.errorlist {
-    color: #cc0033;
-    float: left;
-    clear: both;
-    padding-left: 10px;
+
+.fs-900 {
+    font-size: var(--fs-900);
+}
+.fs-800 {
+    font-size: var(--fs-800);
+}
+.fs-700 {
+    font-size: var(--fs-700);
+}
+.fs-600 {
+    font-size: var(--fs-600);
+}
+.fs-500 {
+    font-size: var(--fs-500);
+}
+.fs-400 {
+    font-size: var(--fs-400);
+}
+.fs-300 {
+    font-size: var(--fs-300);
+}
+.fs-200 {
+    font-size: var(--fs-200);
 }
 
-/* comments */
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+    line-height: 1.1;
+}
+
+.numbered-title {
+    font-family: var(--ff-sans-cond);
+    font-size: var(--fs-500);
+    text-transform: uppercase;
+    letter-spacing: 4.72px;
+}
+
+.numbered-title span {
+    margin-right: 0.5em;
+    font-weight: 700;
+    color: hsl(var(--clr-white) / 0.25);
+}
+
+/* ------------------- */
+/* Compontents         */
+/* ------------------- */
+/* primary-header */
+
+.primary-header {
+    align-items: center;
+}
+
+.primary-navigation {
+    --gap: clamp(1rem, 5vw, 3.5rem);
+    list-style: none;
+    background: hsl(var(--clr-dark) / 0.95);
+}
+
+.primary-navigation a {
+    text-decoration: none;
+}
+
+.primary-navigation a > span {
+    font-weight: 700;
+    margin-right: 0.5em;
+}
+
+@supports (backdrop-filter: blur(1.5rem)) {
+    .primary-navigation {
+        background: hsl(var(--clr-white) / 0.05);
+        backdrop-filter: blur(1.5rem);
+    }
+}
+
+.primary-navigation {
+    padding-inline: clamp(3rem, 5vw, 7rem);
+}
+.primary-header::after {
+    content: "";
+    display: block;
+    position: relative;
+    height: 1px;
+    width: 50%;
+    margin-left: -2.5rem;
+    background-color: hsl(var(--clr-white) / 0.25);
+    order: 1;
+    z-index: 10;
+}
+
+.primary-navigation {
+    margin-block: 2rem;
+}
+
+.underline-indicators > * {
+    cursor: pointer;
+    padding: var(--underline-gap, 1rem) 0;
+    border: 0;
+    border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+    border-color: hsl(var(--clr-white) / 0.5);
+}
+
+.tab-list {
+    --gap: 2rem;
+}
+
+.article-list li {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.article-list li:last-child {
+    border-bottom: none;
+}
+
+.article-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.article-list li a {
+    color: hsl(var(--clr-white)); /* Set the default anchor text color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Add a transition for anchor text color */
+}
+
+.article-list li:hover a {
+    color: black; /* Change the anchor text color to black on hover */
+}
+
+.anchors a {
+    text-decoration: none;
+    color: hsl(var(--clr-white) / 0.7);
+    transition: color 0.3s ease;
+    list-style-type: none;
+}
+
+.anchors a:hover {
+    color: white;
+}
+
+/* post-list-styles */
+
+/* Style the post list container */
+.post-list-container {
+    margin: 0 0 20px 0;
+    padding: 20px;
+}
+
+.post-list-container > div {
+    border-bottom: 1px solid hsl(var(--clr-white) / 0.5);
+}
+
+/* Style the post title */
+.post-list-container h2 a {
+    color: hsl(var(--clr-white));
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-list-container h2 a:hover {
+    color: #007bff; /* Change the title color on hover */
+}
+
+/* Style the tags */
+.post-list-container .tags {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Style the tag links */
+.post-list-container .tags a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-list-container .tags a:hover {
+    color: #0056b3; /* Change tag link color on hover */
+}
+
+/* Style the date */
+.post-list-container .date {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Style the post content */
+.post-list-container p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+/* Style the post excerpt */
+.post-list-container p {
+    margin-top: 10px;
+}
+
+/* Add spacing between posts */
+.post-list-container > h2 {
+    margin-top: 20px;
+}
+
+/* Style the "Share this post" link */
+.share-post a {
+    background-color: hsl(var(--clr-accent)); /* Set the background color */
+    color: hsl(var(--clr-light)); /* Set the text color */
+    text-decoration: none; /* Remove underlines */
+    padding: 10px 20px; /* Add padding to create a button-like appearance */
+    border-radius: 5px; /* Add rounded corners */
+    display: inline-block; /* Make it a block-level element */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add a smooth transition effect */
+}
+
+/* Hover state for the link */
+.share-post a:hover {
+    background-color: hsl(var(--clr-white) / 0.05); /* Change the background color on hover */
+    color: hsl(var(--clr-white)); /* Change the text color on hover */
+}
+
+/* Style the comment container */
 .comment {
+    margin-bottom: 20px;
     padding: 10px;
+    background-color: hsl(var(--clr-white) / 0.05);
+    border-radius: 10px;
 }
-.comment:nth-child(even) {
-    background: #efefef;
-}
-.comment .info {
+
+/* Style the comment information */
+.comment-info {
+    font-size: var(--fs-200);
     font-weight: bold;
-    font-size: 12px;
-    color: #666;
+    color: hsl(var(--clr-light) / 0.9);
+    margin-bottom: 5px;
+}
+
+/* Style the comment body */
+.comment-body {
+    font-size: var(--fs-400);
+    line-height: 1.5;
+    color: hsl(var(--clr-white));
+}
+
+/* Style the "no comments" message */
+.no-comments {
+    font-style: italic;
+    color: #777;
+}
+
+/* Style the comment form */
+.comment-form {
+    padding: 20px;
+}
+
+/* Style the form fields */
+.comment-form p {
+    margin: 10px 0;
+}
+
+/* Style the submit button */
+.comment-submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Change button color on hover */
+.comment-submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Style the form labels */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style the form input fields and textarea */
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Style the submit button */
+form input[type="submit"] {
+    background-color: hsl(var(--clr-white) / 0.1);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Change button color on hover */
+form input[type="submit"]:hover {
+    background-color: hsl(var(--clr-white));
+    color: hsl(var(--clr-dark));
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Style the pagination links */
+.pagination a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid hsl(var(--clr-white));
+    border-radius: 5px;
+    color: hsl(var(--clr-white));
+    margin: 0 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style the current page */
+.pagination .current {
+    font-weight: bold;
+    color: hsl(var(--clr-white));
+    padding: 10px 15px;
+    background-color: hsl(var(--clr-dark));
+    border: 1px solid hsl(var(--clr-white));
+    border-radius: 5px;
+}
+
+/* Style the previous and next links */
+.pagination a:hover {
+    background-color: hsl(var(--clr-white));
+    color: hsl(var(--clr-dark));
+    border-color: #0056b3;
+}
+
+/* Style the go-back-button container */
+.go-back-button {
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* Style the link within the button */
+.go-back-button a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: hsl(var(--clr-white) / 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Change button color on hover */
+.go-back-button a:hover {
+    background-color: hsl(var(--clr-white));
+    color: hsl(var(--clr-dark));
 }

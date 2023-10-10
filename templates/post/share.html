@@ -4,12 +4,9 @@
 
 {% block content %}
     {% if sent %}
-        <h1>E-mail successfully sent</h1>
+        <h1 class="ff-sans-cond uppercase fs-600 ff-sans-cond letter-spacing-2">E-mail successfully sent</h1>
         <p>
             "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.
-        </p>
-        <p>
-            <a href="{% url 'blog:post_list' %}">Go back to posts.</a>
         </p>
     {% else %}
         <h1>Share "{{ post.title }}" by e-mail</h1>
