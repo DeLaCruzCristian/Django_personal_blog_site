@@ -42,6 +42,8 @@ SECRET_KEY=mysecretkey
 SENGRID_API_KEY=myapikey
 DATABASE_URL=mydatabaseurl
 ```
+> [!IMPORTANT]
+> The search engine will only work with PostgreSQL database.
 > [!NOTE]
 > This uses [sendgrid](https://sendgrid.com/) as the email server. If you do not want to use sendgrid, then you will need to configure the email properties in the settings.py file to your preferences.
 
@@ -84,6 +86,3 @@ The root path lists all the blog posts that have been set to publish.
 Clicking on an posts title will take you to their page where you are able to view the whole body of the post as well as comments.
 
 You are able to share the post by filling out an email form and also make comments under posts.
-
-> [!IMPORTANT]
-> The search engine will only work with PostgreSQL database.
