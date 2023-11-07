@@ -13,12 +13,11 @@ The notable features of my blog project are:
 -  Sitemap for search engines
 -  RSS feed that users can subscribe to
 -  Full-text search engine.
-
-Check out the live website [here](https://djangopersonalblogsite-production.up.railway.app/).
+  
 ## Installation
 First clone the repository and change into the directory
 ```bash
-$ git clone https://github.com/Akash1362000/django_project_blogapp.git
+$ git clone https://github.com/DeLaCruzCristian/Django_personal_blog_site.git
 ```
 ```bash
 $ cd Django_personal_blog_site
