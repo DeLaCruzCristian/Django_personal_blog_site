@@ -42,8 +42,10 @@ SECRET_KEY=mysecretkey
 SENGRID_API_KEY=myapikey
 DATABASE_URL=mydatabaseurl
 ```
+
 > [!IMPORTANT]
 > The search engine will only work with PostgreSQL database.
+
 > [!NOTE]
 > This uses [sendgrid](https://sendgrid.com/) as the email server. If you do not want to use sendgrid, then you will need to configure the email properties in the settings.py file to your preferences.
 
