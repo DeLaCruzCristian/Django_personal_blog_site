@@ -83,3 +83,6 @@ The root path lists all the blog posts that have been set to publish.
 Clicking on an posts title will take you to their page where you are able to view the whole body of the post as well as comments.
 
 You are able to share the post by filling out an email form and also make comments under posts.
+
+> [!IMPORTANT]
+> The search engine will only work with PostgreSQL database.
