@@ -37,6 +37,7 @@ $ pre-commit install
 ```
 Create a **.env** file and set the following properties to your specific values
 ```
+DEBUG=True
 SECRET_KEY=mysecretkey
 SENGRID_API_KEY=myapikey
 DATABASE_URL=mydatabaseurl
