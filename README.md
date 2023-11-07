@@ -13,6 +13,9 @@ The notable features of my blog project are:
 -  Sitemap for search engines
 -  RSS feed that users can subscribe to
 -  Full-text search engine.
+
+## Demo
+https://github.com/DeLaCruzCristian/Django_personal_blog_site/assets/141530518/ad7bf196-f87c-4949-892f-cc50932ef60c
   
 ## Installation
 First clone the repository and change into the directory
